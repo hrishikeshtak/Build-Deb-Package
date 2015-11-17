@@ -2,10 +2,10 @@
 This is an introductory tutorial for making Debian packages (.deb) from TARBALL
 
 #### How To Run Script :                
-**bash build_deb_package.sh $PWD kibana-4.1.2-linux-x86.tar.gz**
+First  add the description of your package in the file **control**     
+**python <source-code-dir> <tarball>**
 
 #### Description :          
-First  add the description of your package in the file **packages/debian/sc-kibana/DEBIAN/control**     
 
 1 validate_args : 
 >validate the argument passed to script .
