@@ -45,15 +45,17 @@ create_dir_structure () {
     else
        mkdir -p $DEBIAN_PATH
     fi 
+	# create the directories, where the package after installation will save files.
     mkdir -p $DEBIAN_PATH/opt/
     mkdir -p $DEBIAN_PATH/etc/init.d/
 }   
 ####################################################################################################
 copy_source_code () {
+	# copy the source code to specific directories.
 	cp -r $SOURCE_PACKAGE_DIR/* $DEBIAN_PATH
     cp -r $TARBALL_DIR/$DEB_PACKAGE_NAME/* $DEBIAN_PATH/opt/
-#     cp $TARBALL_DIR/$DEB_PACKAGE_NAME/kibana4 $DEBIAN_PATH/etc/init.d/
-# 	chmod +x $DEBIAN_PATH/etc/init.d/kibana4
+    cp $TARBALL_DIR/$DEB_PACKAGE_NAME/kibana4 $DEBIAN_PATH/etc/init.d/
+	chmod +x $DEBIAN_PATH/etc/init.d/kibana4
 }
 ####################################################################################################
 build_deb_package () {
