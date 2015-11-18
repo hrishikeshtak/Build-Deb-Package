@@ -3,7 +3,7 @@ This is an introductory tutorial for making Debian packages (.deb) from TARBALL
 
 #### How To Run Script :                
 First  add the description of your package in the file **control**     
-**python <source-code-dir> <tarball>**
+**python make_deb_from_tar.py source-code-dir tarball**
 
 #### Description :          
 
