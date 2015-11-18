@@ -19,7 +19,7 @@ print pkgName
 subprocess.call("mkdir -p packages/debian/"+pkgName,shell=True)
 subprocess.call("cp -r files/DEBIAN packages/debian/"+pkgName,shell=True)
 subprocess.call("cp control files/DEBIAN packages/debian/"+pkgName+"/DEBIAN/",shell=True)
-cmd = "sh build_deb_package.sh "+source_code_dir+" "+tarball+" "+pkgName
+cmd = "bash build_deb_package.sh "+source_code_dir+" "+tarball+" "+pkgName
 print cmd
 subprocess.call(cmd,shell=True)
 
