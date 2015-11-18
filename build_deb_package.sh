@@ -3,8 +3,8 @@
 SOURCE_CODE_DIR=$1
 TARBALL=$2
 TARBALL_DIR=$SOURCE_CODE_DIR/TARBALL
-DEB_PACKAGE_NAME=sc-kibana-4.1.2
-SOURCE_PACKAGE_DIR=$1/packages/debian/sc-kibana
+DEB_PACKAGE_NAME=$3
+SOURCE_PACKAGE_DIR=$1/packages/debian/$3
 DEB_PACKAGE_DIR=$1/deb-packages
 DEBIAN_PATH=$DEB_PACKAGE_DIR/$DEB_PACKAGE_NAME
 COUNT_PARAM=$#
@@ -26,7 +26,7 @@ validate_args() {
 		else
 				mkdir -p $TARBALL_DIR
 				tar -xf $TARBALL -C $TARBALL_DIR
-				mv $TARBALL_DIR/* $TARBALL_DIR/$DEB_PACKAGE_NAME
+				#mv $TARBALL_DIR/* $TARBALL_DIR/$DEB_PACKAGE_NAME
 		fi
 }
 ####################################################################################################

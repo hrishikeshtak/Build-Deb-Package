@@ -1,0 +1,8 @@
+Package: terminator
+Source: terminator
+Version: 4.1.2
+Architecture: all
+Maintainer: hrishikeshtak@gmail.com
+Section: python
+Priority: optional
+Description: terminator
