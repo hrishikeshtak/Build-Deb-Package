@@ -10,23 +10,15 @@ DEBIAN_PATH=$DEB_PACKAGE_DIR/$DEB_PACKAGE_NAME
 COUNT_PARAM=$#
 ####################################################################################################
 validate_args() {
-		clear
-		if [ $COUNT_PARAM -eq 0 ] ; then
-				echo -e "SOURCE_CODE_DIRECTORY Missing"
-				exit 0
-		elif [ ! -d $SOURCE_CODE_DIR ]; then
+		if [ ! -d $SOURCE_CODE_DIR ]; then
 				echo -e "SOURCE_CODE_DIRECTORY: $SOURCE_CODE_DIR Missing"
 				exit 0
-		elif [ $COUNT_PARAM -eq 1 ] ; then
-				echo -e "TARBALL Name is Missing"
-				exit 0	
 		elif [ ! -f $TARBALL ] ; then
 				echo -e "TARBALL: $TARBALL does not exist here"
 				exit 0	
 		else
 				mkdir -p $TARBALL_DIR
 				tar -xf $TARBALL -C $TARBALL_DIR
-				#mv $TARBALL_DIR/* $TARBALL_DIR/$DEB_PACKAGE_NAME
 		fi
 }
 ####################################################################################################
@@ -48,14 +40,16 @@ create_dir_structure () {
 	# create the directories, where the package after installation will save files.
     mkdir -p $DEBIAN_PATH/opt/
     mkdir -p $DEBIAN_PATH/etc/init.d/
+    mkdir -p $DEBIAN_PATH/etc/default/
 }   
 ####################################################################################################
 copy_source_code () {
 	# copy the source code to specific directories.
 	cp -r $SOURCE_PACKAGE_DIR/* $DEBIAN_PATH
     cp -r $TARBALL_DIR/$DEB_PACKAGE_NAME/* $DEBIAN_PATH/opt/
-    cp $TARBALL_DIR/$DEB_PACKAGE_NAME/kibana4 $DEBIAN_PATH/etc/init.d/
-	chmod +x $DEBIAN_PATH/etc/init.d/kibana4
+    cp $TARBALL_DIR/$DEB_PACKAGE_NAME/kibana $DEBIAN_PATH/etc/init.d/
+    cp $TARBALL_DIR/$DEB_PACKAGE_NAME/kibana.default $DEBIAN_PATH/etc/default/kibana
+	chmod +x $DEBIAN_PATH/etc/init.d/kibana
 }
 ####################################################################################################
 build_deb_package () {
@@ -65,7 +59,6 @@ build_deb_package () {
     cd $CURDIR
 	rm -rf $TARBALL_DIR 
 	echo -e "The $DEB_PACKAGE_NAME.deb is created at $DEB_PACKAGE_DIR"
-	ls $DEB_PACKAGE_DIR	
 }
 ####################################################################################################
 validate_args
